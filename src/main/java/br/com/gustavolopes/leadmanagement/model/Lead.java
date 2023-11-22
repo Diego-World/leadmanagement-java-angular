@@ -9,12 +9,14 @@ public class Lead {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     String name;
-    int cellNumber;
+    String cellNumber;
     String email;
     String age;
     double annualIncome;
+    public Lead(){
 
-    public Lead(String name, int cellNumber, String email, String age, double annualIncome) {
+    }
+    public Lead(String name, String cellNumber, String email, String age, double annualIncome) {
         this.name = name;
         this.cellNumber = cellNumber;
         this.email = email;
@@ -22,11 +24,11 @@ public class Lead {
         this.annualIncome = annualIncome;
     }
 
-    public int getCellNumber() {
+    public String getCellNumber() {
         return cellNumber;
     }
 
-    public void setCellNumber(int cellNumber) {
+    public void setCellNumber(String cellNumber) {
         this.cellNumber = cellNumber;
     }
 

@@ -32,10 +32,14 @@ public class LeadService {
     }
 
     //UPDATE
-    public Lead updateLead(Long id , Lead lead){
-        var leadBanco = this.leadRepository.findById(id).orElse(null);
-        Utils.copyNonNullProperties(lead,leadBanco);
-        leadBanco = this.leadRepository.save(leadBanco);
+    public Lead updateLead(Long id , Lead leadRequest) throws Exception {
+        Lead leadBanco = this.leadRepository.findById(id).orElseThrow(() -> new Exception("Lead não encontrado!"));
+        leadBanco.setAge(leadRequest.getAge());
+        leadBanco.setName(leadRequest.getName());
+        leadBanco.setEmail(leadRequest.getEmail());
+        leadBanco.setCellNumber(leadRequest.getCellNumber());
+        leadBanco.setAnnualIncome(leadRequest.getAnnualIncome());
+        this.leadRepository.save(leadBanco);
         return leadBanco;
     }
 

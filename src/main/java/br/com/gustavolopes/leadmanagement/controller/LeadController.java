@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/lead")
+@CrossOrigin("*")
 public class LeadController {
     @Autowired
     private LeadService leadService;
@@ -36,14 +37,18 @@ public class LeadController {
     }
 
     //UPDATE
-    @PutMapping("{id}")
-    public ResponseEntity<Lead> update(@PathVariable Long id, @RequestBody Lead lead){
-        var leadBanco = this.leadService.updateLead(id,lead);
-        return ResponseEntity.status(HttpStatus.OK).body(leadBanco);
+    @PutMapping("/{id}")
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Lead lead){
+        try {
+            var leadBanco = this.leadService.updateLead(id,lead);
+            return ResponseEntity.status(HttpStatus.OK).body(leadBanco);
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Lead não encontrado");
+        }
     }
 
     //DELETE
-    @DeleteMapping("")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id){
         var leadBanco = this.leadService.deletarLead(id);
         return ResponseEntity.status(HttpStatus.OK).body(leadBanco);

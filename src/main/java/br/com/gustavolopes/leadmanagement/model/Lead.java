@@ -7,12 +7,12 @@ import jakarta.persistence.*;
 public class Lead {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
-    String name;
-    String cellNumber;
-    String email;
-    String age;
-    double annualIncome;
+    private Long id;
+    private String name;
+    private String cellNumber;
+    private String email;
+    private String age;
+    private double annualIncome;
     public Lead(){
 
     }
